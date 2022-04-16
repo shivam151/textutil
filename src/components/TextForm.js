@@ -38,7 +38,7 @@ export default function TextForm(props) {
      setText(newText.join(" "))
      props.showAlert("Extra spaces removed", "success");
   }
-  const [text, setText] = useState('Enter the text here');
+  const [text, setText] = useState('');
 
   return (
     <>
@@ -48,15 +48,15 @@ export default function TextForm(props) {
           <div className="mb-3"  >
             <textarea className="form-control" value={text} onChange={handleonChange}style={{backgroundColor: props.mode==='dark'? 'Grey': 'white', color:props.mode=== 'dark'?'white': '#042743'}} id="mybox" rows="8"></textarea>
           </div>
-          <button className="btn btn-primary mx-2" onClick={handleupclick}>convert To UpperCase</button>
-          <button className="btn btn-primary mx-2" onClick={handleLowclick}>convert To LowerCase</button>
-          <button className="btn btn-primary mx-2" onClick={handleclear}>Clear text</button>
-          <button className="btn btn-primary mx-2" onClick={handleCopy}>Copy text</button>
-          <button className="btn btn-primary mx-2" onClick={handleExtraSpaces}>Remove Extra space</button>
+          <button className="btn btn-primary mx-2 my-1" onClick={handleupclick}>convert To UpperCase</button>
+          <button className="btn btn-primary mx-2 my-1" onClick={handleLowclick}>convert To LowerCase</button>
+          <button className="btn btn-primary mx-2 my-1" onClick={handleclear}>Clear text</button>
+          <button className="btn btn-primary mx-2 my-1" onClick={handleCopy}>Copy text</button>
+          <button className="btn btn-primary mx-2 my-1" onClick={handleExtraSpaces}>Remove Extra space</button>
         </div>
         <div className="container my-5" style={{color: props.mode==='dark'?'white':'#042743'}}>
           <h1>Your Text summary</h1>
-          <p>{text.split(" ").length} words,{text.length} character</p>
+          <p>{text.split(/\s+/).filter((element)=>{return element.length!==0}).length} words,{text.length} character</p>
           <p>{0.008 * text.split("").length}Minutes read</p>
           <h2>Preview</h2>
           <p>{text}</p>

@@ -1,27 +1,31 @@
 import React, { useState } from 'react'
 
-export default function About() {
+export default function About(props) {
 
-  const [mystyle, setMystyle] = useState({
-    color: 'black',
-    backgroundColor: 'white'
-  })
-  const [btnText, SetBtnText] = useState("Enable Dark mode")
-  let toggleStyle = () => {
-    if (mystyle.backgroundColor === 'white') {
-      setMystyle({
-        color: 'white',
-        backgroundColor: '#042743'
-      })
-      SetBtnText("Enable light mode")
-    } else {
-      setMystyle({
-        color: '#042743',
-        backgroundColor: 'white'
-      })
-      SetBtnText("Enable dark mode")
-    }
-  }
+  // const [mystyle, setMystyle] = useState({
+  //   color: 'black',
+  //   backgroundColor: 'white'
+  // })
+  // const [btnText, SetBtnText] = useState("Enable Dark mode")
+  // let toggleStyle = () => {
+  //   if (mystyle.backgroundColor === 'white') {
+  //     setMystyle({
+  //       color: 'white',
+  //       backgroundColor: '#042743'
+  //     })
+  //     SetBtnText("Enable light mode")
+  //   } else {
+  //     setMystyle({
+  //       color: '#042743',
+  //       backgroundColor: 'white'
+  //     })
+  //     SetBtnText("Enable dark mode")
+  //   }
+  // }
+  let mystyle = {
+    color: props.mode === 'dark'?'white':'#042743',
+    backgroundColor: props.mode ==='dark'?'#042743':'white'
+}
   return (
     <>
       <div className="container" style={mystyle}>
@@ -30,12 +34,12 @@ export default function About() {
           <div className="accordion-item" style={mystyle}>
             <h2 className="accordion-header" id="headingOne">
               <button className="accordion-button" type="button" style={mystyle} data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                About us
+                <strong>Analyise Your text</strong>
               </button>
             </h2>
             <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
               <div className="accordion-body" style={mystyle}>
-                <p> I am the student  btech compter sience and This is my first project on the react  </p>
+                <p> Textutils gives the way to analyis your text  </p>
               </div>
             </div>
           </div>
@@ -64,7 +68,7 @@ export default function About() {
             </div>
           </div>
         </div>
-        <button onClick={toggleStyle} type="button" className="btn btn-primary my-3"  > {btnText}</button>
+        
       </div>
     </>
   )
